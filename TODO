@@ -1,0 +1,77 @@
+TODO:
+  Features:
+
+1. Daily Water Goal:
+   ✔ [ ] Set a default daily water intake goal (e.g., 2000 ml). @done(24-11-02 02:16)
+   ✔ [ ] Allow the user to manually adjust the goal (for future enhancements). @done(24-11-02 02:16)
+
+2. Home Screen - Water Logging:
+   ✔ [] Display today's total water intake. @done(24-11-02 02:27)
+   ✔ [ ] Show a progress bar to visualize progress toward the daily goal. @done(24-11-02 02:27)
+   ✔ [ ] Add a button to log a fixed amount of water intake (250 ml increments). @done(24-11-02 02:27)
+   ✔ [ ] Save each water log entry in AsyncStorage for persistence. @done(24-11-02 02:27)
+
+3. Notifications - Reminders:
+   ✔ [ ] Implement notifications to remind the user to drink water every 2 hours. @done(24-11-02 12:44)
+   ✔ [ ] Customize notifications to be scheduled using `React Native Push Notification`. @done(24-11-02 12:44)
+
+4. Data Persistence:
+   - [ ] Use AsyncStorage to save and retrieve water intake data and daily goals.
+   ✔ [ ] Reset the water intake log at midnight to start a fresh count daily. @done(24-11-02 13:06)
+
+5. Stats Screen (Optional Enhancement):
+   ✔ [ ] Display a simple history of the last few days' water intake. @done(24-11-02 13:06)
+   ✔ [ ] Calculate streaks or achievements for hitting daily goals consistently. @done(24-11-02 13:06)
+
+
+  Steps:
+
+Step 1: Project Setup:
+- [ ] Initialize a new React Native project: `npx react-native init WaterTracker`.
+- [ ] Install necessary dependencies:
+  ```bash
+  npm install @react-navigation/native @react-navigation/stack
+  npm install @react-native-async-storage/async-storage
+  npm install react-native-push-notification
+  ```
+
+Step 2: Build the Home Screen:
+- [ ] Create a `HomeScreen.js` component under `components/`.
+- [ ] Add UI elements to display:
+  - [ ] Total water intake for the day.
+  - [ ] Progress bar that updates based on water intake.
+  - [ ] Button to add 250 ml increments of water intake.
+- [ ] Implement functions to:
+  - [ ] Increase water intake when the button is clicked.
+  - [ ] Save updated water intake data to AsyncStorage.
+
+Step 3: Set Up Notifications:
+- [ ] Create a `notifications.js` file in the `services/` folder.
+- [ ] Use `React Native Push Notification` to set up reminders.
+- [ ] Implement a notification schedule to remind the user every 2 hours to drink water.
+- [ ] Test notifications to confirm functionality.
+
+Step 4: Add Data Persistence with AsyncStorage:
+- [ ] Create utility functions in a `storage.js` file under `utils/`:
+  - [ ] `saveWaterIntake(amount)`: Save the updated intake value to AsyncStorage.
+  - [ ] `getWaterIntake()`: Retrieve the current intake value from AsyncStorage.
+- [ ] Update the `HomeScreen` component to use these functions to load and save water intake data.
+
+Step 5: Reset Water Intake at Midnight:
+- [ ] Add logic to reset water intake data at midnight.
+- [ ] For MVP, use a simple manual reset button (optional for day 1).
+
+Step 6: Testing and Finishing Touches:
+- [ ] Test the app to ensure:
+  - [ ] Water intake logging works as expected.
+  - [ ] The progress bar updates correctly based on the intake.
+  - [ ] Notifications are scheduled and displayed every 2 hours.
+  - [ ] Data persists and reloads accurately after closing and reopening the app.
+- [ ] Address any bugs or UI tweaks.
+
+Future Enhancements (For Later Phases):
+- [ ] Add a settings screen to set custom daily goals.
+- [ ] Track weekly and monthly water intake stats.
+- [ ] Implement more flexible notification scheduling.
+- [ ] Integrate with fitness or health apps.
+
