@@ -6,6 +6,7 @@ import ConfettiCannon from "react-native-confetti-cannon";
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
+    withDelay,
     withTiming
 } from "react-native-reanimated";
 import Svg, { Path, RadialGradient, Stop } from "react-native-svg";
@@ -25,8 +26,9 @@ export default function congrats() {
     const [userName, setUserName] = useState("");
     const [showConfetti, setShowConfetti] = useState(false);
     const [showButton, setShowButton] = useState(false);
+    const [showUserName, setShowUserName] = useState(false);
 
-    const textTranslateY = useSharedValue(50);
+    const textTranslateY = useSharedValue(100);
     const buttonOpacity = useSharedValue(0);
 
     useEffect(() => {
@@ -43,7 +45,8 @@ export default function congrats() {
     useEffect(() => {
         if (showButton) {
             textTranslateY.value = withTiming(0, { duration: 500 });
-            buttonOpacity.value = withTiming(1, { duration: 500 });
+            buttonOpacity.value = withDelay(500, withTiming(1, { duration: 500 }));
+            setTimeout(() => setShowUserName(true), 500); // Delay showing the username
         }
     }, [showButton, textTranslateY, buttonOpacity]);
 
@@ -156,7 +159,7 @@ export default function congrats() {
             <Animated.View style={animatedTextStyle}>
                 <Text style={styles.title}>Congratulations!</Text>
                 <Text style={styles.subtitle}>You have successfully registered,</Text>
-                <Text style={styles.userName}>{userName}</Text>
+                {showUserName && <Text style={styles.userName}>{userName}</Text>}
             </Animated.View>
             {showConfetti && (
                 <ConfettiCannon
@@ -188,8 +191,8 @@ const styles = StyleSheet.create({
         padding: 20
     },
     icon: {
-        width: "80%",
-        height: "80%",
+        width: "60%",
+        height: "60%",
         marginBottom: 10
     },
     title: {
