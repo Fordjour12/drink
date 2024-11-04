@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -173,7 +174,7 @@ export default function congrats() {
                     <CustomButton
                         title="Continue"
                         onPress={() => {
-                            /* handle button press */
+                            router.push("/")
                         }}
                     />
                 </Animated.View>

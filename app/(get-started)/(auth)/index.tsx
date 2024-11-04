@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from "expo-router";
 import { ArrowUpRight } from "lucide-react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import {
@@ -26,13 +28,27 @@ const debounce = (
 export default function index() {
     const [name, setName] = useState("");
     const [isNameTyped, setIsNameTyped] = useState(false);
+    const router = useRouter();
+
+    const saveNameToStorage = async (name: string) => {
+        try {
+            await AsyncStorage.setItem('userName', name);
+            router.push("/(get-started)/(auth)/congrats"); // Navigate to the congrats screen
+        } catch (error) {
+            console.error('Failed to save the name to storage', error);
+        }
+    };
+
+    const handleNameChange = (text: string) => {
+        setName(text);
+    };
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     const checkNameTyped = useCallback(
         debounce(() => {
             setIsNameTyped(name.length > 0);
         }, 1000),
-        [name] // Added name as a dependency
+        [name]
     );
 
     useEffect(() => {
@@ -54,11 +70,14 @@ export default function index() {
                 style={styles.input}
                 placeholder="Enter your name"
                 value={name}
-                onChangeText={setName}
+                onChangeText={handleNameChange}
             />
             <Text style={styles.text}>{name}</Text>
             {isNameTyped && (
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => saveNameToStorage(name)}
+                >
                     <Text style={styles.buttonText}>Let's go</Text>
                     <ArrowUpRight color="white" size={20} />
                 </TouchableOpacity>
