@@ -6,7 +6,7 @@ export default function GetStartedLayout() {
         <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name='(set-up)' options={{ headerShown: false }} />
+            <Stack.Screen name="(setup)" options={{ headerShown: false }} />
         </Stack>
     )
 }

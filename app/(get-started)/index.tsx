@@ -10,7 +10,8 @@ export default function index() {
                 <Text>Get Started With Drink</Text>
                 <Text>Drink is a simple app that helps you track your daily water intake.</Text>
                 <Button title="Get Started" onPress={() => router.push("/(get-started)/(auth)")} />
-                <Button title="Congratulations" onPress={() => router.push("/(get-started)/(auth)/congrats")} />
+                <Button title='set-up' onPress={() => router.push('/(get-started)/(setup)')} />
+                <Button title='testing' onPress={() => router.push('/(get-started)/tesing')} />
             </View>
         </SafeAreaView>
     )
