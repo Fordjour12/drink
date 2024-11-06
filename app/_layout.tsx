@@ -19,9 +19,8 @@ export default function RootLayout() {
 		Playfair: require("@/assets/fonts/Playfair_144pt-Regular.ttf"),
 		PlayfairExtarBold: require("@/assets/fonts/Playfair_144pt-ExtraBold.ttf"),
 		PlayfairBlack: require("@/assets/fonts/Playfair_144pt-Black.ttf"),
-		PlayfairVW: require("@/assets/fonts/Playfair-VariableFont_wght.ttf"),
 		SourceCode: require("@/assets/fonts/SourceCodePro-Regular.ttf"),
-		SourceCodeVW: require("@/assets/fonts/SourceCodePro-VariableFont_wght.ttf"),
+		Playfair900: require("@/assets/fonts/PlayfairDisplay-Black.ttf"),
 	});
 
 	useEffect(() => {
@@ -37,6 +36,7 @@ export default function RootLayout() {
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<Stack>
+				<Stack.Screen name="(get-started)" options={{ headerShown: false }} />
 				<Stack.Screen name="index" options={{ headerShown: false }} />
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 				<Stack.Screen name="+not-found" />

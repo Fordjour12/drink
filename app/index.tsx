@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { Dimensions, ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -16,7 +16,7 @@ const QuickStartScreen = () => {
                     <View style={styles.card}>
                         <Text style={styles.title}>Sip, Track, Thrive!</Text>
                         <Text style={[styles.text, styles.subtext, { paddingBottom: 6 }]}>Your Hydration Journey Starts Here</Text>
-                        <Text style={[styles.text, { fontSize: 14 }]}>
+                        <Text style={[styles.text, { fontSize: 16 }]}>
                             Regular water intake supports digestion, skin health, and energy levels. Use our app to stay on top of your hydration goals effortlessly!
                             Water is essential to every part of your body’s health. With consistent hydration, you can improve mood, increase focus, and support your overall well-being.
                         </Text>
@@ -35,6 +35,11 @@ const QuickStartScreen = () => {
                         >
                             <Text style={[styles.text, { fontFamily: "PlayfairExtarBold", fontSize: 24 }]}>Lets go</Text>
                         </Pressable>
+                        <View>
+                            <Link href="/(get-started)/" asChild style={styles.text}>
+                                <Text style={[styles.text, styles.loginText]}>Already have an account? Log in</Text>
+                            </Link>
+                        </View>
                     </View>
                 </View>
             </SafeAreaView>
@@ -78,7 +83,12 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#FFFFFF', // White text color
-        fontFamily: "SourceCode"
+        fontFamily: "Playfair"
+    },
+    loginText: {
+        fontSize: 16,
+        textDecorationLine: 'underline',
+        marginTop: 10,
     }
 });
 

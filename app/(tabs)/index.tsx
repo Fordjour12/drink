@@ -53,6 +53,9 @@ export default function Index() {
       <Link href={"/(tabs)/history"} asChild>
         <Text style={styles.link}>History</Text>
       </Link>
+      <Link href={"/(tabs)/ax"} asChild>
+        <Text style={styles.link}>Ax</Text>
+      </Link>
     </View>
   );
 

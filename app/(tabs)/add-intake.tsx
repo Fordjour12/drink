@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Hx from './hx';
 
 const WaterIntakeTracker = () => {
   const [intakeGoal, setIntakeGoal] = useState('2000');
@@ -97,36 +98,40 @@ const WaterIntakeTracker = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Set Daily Water Intake Goal (ml)</Text>
-      <Text style={styles.goal}>Current Goal: {intakeGoal} ml</Text>
+    <Fragment>
+      <View style={styles.container}>
+        <Text style={styles.label}>Set Daily Water Intake Goal (ml)</Text>
+        <Text style={styles.goal}>Current Goal: {intakeGoal} ml</Text>
 
-      <View style={styles.quickAddContainer}>
-        <TouchableOpacity style={styles.quickAddButton} onPress={() => handleQuickAdd(250)}>
-          <Text style={styles.buttonText}>250ml</Text>
+        <View style={styles.quickAddContainer}>
+          <TouchableOpacity style={styles.quickAddButton} onPress={() => handleQuickAdd(250)}>
+            <Text style={styles.buttonText}>250ml</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.quickAddButton} onPress={() => handleQuickAdd(500)}>
+            <Text style={styles.buttonText}>500ml</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.quickAddButton} onPress={() => handleQuickAdd(750)}>
+            <Text style={styles.buttonText}>750ml</Text>
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.label}>Add Custom Water Intake (ml)</Text>
+        <TextInput
+          style={styles.input}
+          value={inputValue}
+          onChangeText={setInputValue}
+          keyboardType="numeric"
+          maxLength={4}
+          placeholder="Enter amount"
+        />
+        <TouchableOpacity style={styles.button} onPress={handleAddIntake}>
+          <Text style={styles.buttonText}>Add Intake</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.quickAddButton} onPress={() => handleQuickAdd(500)}>
-          <Text style={styles.buttonText}>500ml</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.quickAddButton} onPress={() => handleQuickAdd(750)}>
-          <Text style={styles.buttonText}>750ml</Text>
-        </TouchableOpacity>
+        <Text style={styles.total}>Total Intake Today: {totalIntake} ml</Text>
+
       </View>
-
-      <Text style={styles.label}>Add Custom Water Intake (ml)</Text>
-      <TextInput
-        style={styles.input}
-        value={inputValue}
-        onChangeText={setInputValue}
-        keyboardType="numeric"
-        maxLength={4}
-        placeholder="Enter amount"
-      />
-      <TouchableOpacity style={styles.button} onPress={handleAddIntake}>
-        <Text style={styles.buttonText}>Add Intake</Text>
-      </TouchableOpacity>
-      <Text style={styles.total}>Total Intake Today: {totalIntake} ml</Text>
-    </View>
+      <Hx intakeGoal={Number(intakeGoal)} totalIntake={totalIntake} />
+    </Fragment>
   );
 };
 
